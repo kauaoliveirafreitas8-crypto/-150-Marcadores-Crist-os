@@ -74,98 +74,80 @@
     <!-- Preload critical above-the-fold and high priority images -->
     <link rel="preload" as="image" href="https://i.ibb.co/1f20PDCS/Chat-GPT-Image-26-de-jun-de-2026-14-43-43.png" fetchpriority="high" />
     
-    <!-- Script to preload remaining images progressively in batches after the page fully loads -->
+    <!-- Script to preload remaining images instantly in parallel for lightning fast load times -->
     <script>
-      window.addEventListener('load', function() {
-        // Delay preloading slightly to guarantee full interactivity first
-        setTimeout(function() {
-          const imageList = [
-            "https://i.ibb.co/S8PTmG7/Chat-GPT-Image-26-de-jun-de-2026-18-36-39.png",
-            "https://i.ibb.co/bjswWkF7/Chat-GPT-Image-26-de-jun-de-2026-20-55-33.png",
-            "https://i.ibb.co/cKc1VSFm/img01.png",
-            "https://i.ibb.co/wFH6NYqV/img02.png",
-            "https://i.ibb.co/1GnmMvkT/img03.png",
-            // Testimonials
-            "https://i.ibb.co/0y8DDYnF/dp01.png",
-            "https://i.ibb.co/fVKCMF4F/dp05.png",
-            "https://i.ibb.co/84t8Sg4d/dp02.png",
-            "https://i.ibb.co/0RdL5vkJ/dp06.png",
-            "https://i.ibb.co/jkPcThRf/dp03.png",
-            "https://i.ibb.co/bMZ5jSQ3/dp04.png",
-            // Carousel 1 (critical starting ones)
-            "https://i.ibb.co/wFqYnVFb/01.png",
-            "https://i.ibb.co/Z62TjN6h/02.png",
-            "https://i.ibb.co/nhy8KzS/03.png",
-            "https://i.ibb.co/B5ygLsy0/04.png",
-            // Carousel 2 (critical starting ones)
-            "https://i.ibb.co/0jKddRwj/26.png",
-            "https://i.ibb.co/Wp6xP8CB/27.png",
-            "https://i.ibb.co/bRJhQzxY/28.png",
-            "https://i.ibb.co/qLMcXz2y/29.png",
-            // Remaining carousel 1
-            "https://i.ibb.co/N0tFB2B/05.png",
-            "https://i.ibb.co/jkynfZKB/06.png",
-            "https://i.ibb.co/XxQJvsTk/07.png",
-            "https://i.ibb.co/pBC44Y0x/08.png",
-            "https://i.ibb.co/kgSS4hCQ/09.png",
-            "https://i.ibb.co/60Q9YmNx/10.png",
-            "https://i.ibb.co/6c1pv0Xx/11.png",
-            "https://i.ibb.co/7JJNgVd4/12.png",
-            "https://i.ibb.co/whLVVxh5/13.png",
-            "https://i.ibb.co/hJCZRHqM/14.png",
-            "https://i.ibb.co/fd0wfZpG/15.png",
-            "https://i.ibb.co/rGXScKQ2/16.png",
-            "https://i.ibb.co/rRc1VthF/17.png",
-            "https://i.ibb.co/vvsHMfWP/18.png",
-            "https://i.ibb.co/HDKkdpyv/19.png",
-            "https://i.ibb.co/jP0PVQTQ/20.png",
-            "https://i.ibb.co/Gv7QbNC0/21.png",
-            "https://i.ibb.co/dwv9RqRV/22.png",
-            "https://i.ibb.co/fYSsWPqS/23.png",
-            "https://i.ibb.co/zVwpXHCK/24.png",
-            "https://i.ibb.co/DP0wnmmJ/25.png",
-            // Remaining carousel 2
-            "https://i.ibb.co/N2H09r92/30.png",
-            "https://i.ibb.co/N6wnsFpg/31.png",
-            "https://i.ibb.co/4Z3h7Dp4/32.png",
-            "https://i.ibb.co/G4ryWWts/33.png",
-            "https://i.ibb.co/xKznyg3r/34.png",
-            "https://i.ibb.co/gLVHVKXJ/35.png",
-            "https://i.ibb.co/vvjfsKxL/36.png",
-            "https://i.ibb.co/r2JY0bLy/37.png",
-            "https://i.ibb.co/5x1zZpVQ/38.png",
-            "https://i.ibb.co/7J9RDG75/39.png",
-            "https://i.ibb.co/v46L4J43/40.png",
-            "https://i.ibb.co/qFJvCZmw/41salmos.png",
-            "https://i.ibb.co/fzPjvkCj/42.png",
-            "https://i.ibb.co/prNvf9sJ/43.png",
-            "https://i.ibb.co/b5DN1qTx/44.png",
-            "https://i.ibb.co/zVqf1j64/45.png",
-            "https://i.ibb.co/8D9CNMHp/46.png",
-            "https://i.ibb.co/99BJHcmN/47.png",
-            "https://i.ibb.co/pBr0PrSg/48.png",
-            "https://i.ibb.co/DP6PwpyF/49.png",
-            "https://i.ibb.co/LzVmkR8p/50.png"
-          ];
-          
-          // Preload in batches of 4 images every 200ms to avoid network congestion
-          const batchSize = 4;
-          let currentIndex = 0;
-          
-          function loadNextBatch() {
-            if (currentIndex >= imageList.length) return;
-            const limit = Math.min(currentIndex + batchSize, imageList.length);
-            for (let i = currentIndex; i < limit; i++) {
-              const img = new Image();
-              img.src = imageList[i];
-            }
-            currentIndex = limit;
-            setTimeout(loadNextBatch, 200);
-          }
-          
-          loadNextBatch();
-        }, 1500);
-      });
+      (function() {
+        const imageList = [
+          "https://i.ibb.co/S8PTmG7/Chat-GPT-Image-26-de-jun-de-2026-18-36-39.png",
+          "https://i.ibb.co/bjswWkF7/Chat-GPT-Image-26-de-jun-de-2026-20-55-33.png",
+          "https://i.ibb.co/cKc1VSFm/img01.png",
+          "https://i.ibb.co/wFH6NYqV/img02.png",
+          "https://i.ibb.co/1GnmMvkT/img03.png",
+          // Testimonials
+          "https://i.ibb.co/0y8DDYnF/dp01.png",
+          "https://i.ibb.co/fVKCMF4F/dp05.png",
+          "https://i.ibb.co/84t8Sg4d/dp02.png",
+          "https://i.ibb.co/0RdL5vkJ/dp06.png",
+          "https://i.ibb.co/jkPcThRf/dp03.png",
+          "https://i.ibb.co/bMZ5jSQ3/dp04.png",
+          // Carousel 1
+          "https://i.ibb.co/wFqYnVFb/01.png",
+          "https://i.ibb.co/Z62TjN6h/02.png",
+          "https://i.ibb.co/nhy8KzS/03.png",
+          "https://i.ibb.co/B5ygLsy0/04.png",
+          "https://i.ibb.co/N0tFB2B/05.png",
+          "https://i.ibb.co/jkynfZKB/06.png",
+          "https://i.ibb.co/XxQJvsTk/07.png",
+          "https://i.ibb.co/pBC44Y0x/08.png",
+          "https://i.ibb.co/kgSS4hCQ/09.png",
+          "https://i.ibb.co/60Q9YmNx/10.png",
+          "https://i.ibb.co/6c1pv0Xx/11.png",
+          "https://i.ibb.co/7JJNgVd4/12.png",
+          "https://i.ibb.co/whLVVxh5/13.png",
+          "https://i.ibb.co/hJCZRHqM/14.png",
+          "https://i.ibb.co/fd0wfZpG/15.png",
+          "https://i.ibb.co/rGXScKQ2/16.png",
+          "https://i.ibb.co/rRc1VthF/17.png",
+          "https://i.ibb.co/vvsHMfWP/18.png",
+          "https://i.ibb.co/HDKkdpyv/19.png",
+          "https://i.ibb.co/jP0PVQTQ/20.png",
+          "https://i.ibb.co/Gv7QbNC0/21.png",
+          "https://i.ibb.co/dwv9RqRV/22.png",
+          "https://i.ibb.co/fYSsWPqS/23.png",
+          "https://i.ibb.co/zVwpXHCK/24.png",
+          "https://i.ibb.co/DP0wnmmJ/25.png",
+          // Carousel 2
+          "https://i.ibb.co/0jKddRwj/26.png",
+          "https://i.ibb.co/Wp6xP8CB/27.png",
+          "https://i.ibb.co/bRJhQzxY/28.png",
+          "https://i.ibb.co/qLMcXz2y/29.png",
+          "https://i.ibb.co/N2H09r92/30.png",
+          "https://i.ibb.co/N6wnsFpg/31.png",
+          "https://i.ibb.co/4Z3h7Dp4/32.png",
+          "https://i.ibb.co/G4ryWWts/33.png",
+          "https://i.ibb.co/xKznyg3r/34.png",
+          "https://i.ibb.co/gLVHVKXJ/35.png",
+          "https://i.ibb.co/vvjfsKxL/36.png",
+          "https://i.ibb.co/r2JY0bLy/37.png",
+          "https://i.ibb.co/5x1zZpVQ/38.png",
+          "https://i.ibb.co/7J9RDG75/39.png",
+          "https://i.ibb.co/v46L4J43/40.png",
+          "https://i.ibb.co/qFJvCZmw/41salmos.png",
+          "https://i.ibb.co/fzPjvkCj/42.png",
+          "https://i.ibb.co/prNvf9sJ/43.png",
+          "https://i.ibb.co/b5DN1qTx/44.png",
+          "https://i.ibb.co/zVqf1j64/45.png",
+          "https://i.ibb.co/8D9CNMHp/46.png",
+          "https://i.ibb.co/99BJHcmN/47.png",
+          "https://i.ibb.co/pBr0PrSg/48.png",
+          "https://i.ibb.co/DP6PwpyF/49.png",
+          "https://i.ibb.co/LzVmkR8p/50.png"
+        ];
+        imageList.forEach(function(src) {
+          const img = new Image();
+          img.src = src;
+        });
+      })();
     </script>
   </head>
   <body>
