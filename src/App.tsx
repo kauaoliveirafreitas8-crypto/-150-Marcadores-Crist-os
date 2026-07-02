@@ -140,27 +140,8 @@ export default function App() {
       setSecondsLeft((prev) => (prev > 0 ? prev - 1 : 540)); // Restart at 9 mins when hitting 0 to keep offer active
     }, 1000);
 
-    // Preload remaining images in background after initial render to make the page extremely fast
-    const preloadTimer = setTimeout(() => {
-      const imagesToPreload = [
-        ...TESTIMONIAL_IMAGES,
-        ...CAROUSEL_ONE_IMAGES,
-        ...CAROUSEL_TWO_IMAGES,
-        "https://i.ibb.co/bjswWkF7/Chat-GPT-Image-26-de-jun-de-2026-20-55-33.png",
-        "https://i.ibb.co/cKc1VSFm/img01.png",
-        "https://i.ibb.co/wFH6NYqV/img02.png",
-        "https://i.ibb.co/1GnmMvkT/img03.png"
-      ];
-
-      imagesToPreload.forEach((url) => {
-        const img = new Image();
-        img.src = url;
-      });
-    }, 0);
-
     return () => {
       clearInterval(timer);
-      clearTimeout(preloadTimer);
     };
   }, []);
 
@@ -280,6 +261,9 @@ export default function App() {
               src="https://i.ibb.co/1f20PDCS/Chat-GPT-Image-26-de-jun-de-2026-14-43-43.png" 
               alt="Mockup do Kit +150 Marcadores Cristãos" 
               referrerPolicy="no-referrer"
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
               className="w-full h-auto object-cover rounded-xl"
               id="mockup-image"
             />
@@ -357,6 +341,8 @@ export default function App() {
                   src={imgUrl} 
                   alt={`Depoimento de cliente ${index + 1}`}
                   referrerPolicy="no-referrer"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-auto rounded-2xl border border-[#C89B3C]/20 p-1 bg-white shadow-sm hover:shadow-md hover:scale-[1.01] transition-all duration-300 object-contain"
                 />
               </div>
@@ -381,6 +367,8 @@ export default function App() {
               src="https://i.ibb.co/S8PTmG7/Chat-GPT-Image-26-de-jun-de-2026-18-36-39.png"
               alt="Passos para usar os Marcadores Cristãos Premium"
               referrerPolicy="no-referrer"
+              loading="lazy"
+              decoding="async"
               className="w-full h-auto rounded-[18px] object-contain"
             />
           </div>
@@ -556,7 +544,8 @@ export default function App() {
                       src={url} 
                       alt={`Modelo de Marcador Cristão ${index + 1}`}
                       referrerPolicy="no-referrer"
-                      loading="eager"
+                      loading={index < 4 ? "eager" : "lazy"}
+                      decoding="async"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                     <div className="absolute bottom-1.5 right-1.5 px-1.5 py-0.5 rounded-md bg-[#0F3157]/95 text-[#E4C97A] text-[8px] font-mono tracking-wider font-semibold shadow">
@@ -578,7 +567,8 @@ export default function App() {
                       src={url} 
                       alt={`Modelo de Marcador Cristão ${index + 1}`}
                       referrerPolicy="no-referrer"
-                      loading="eager"
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                     <div className="absolute bottom-1.5 right-1.5 px-1.5 py-0.5 rounded-md bg-[#0F3157]/95 text-[#E4C97A] text-[8px] font-mono tracking-wider font-semibold shadow">
@@ -606,7 +596,8 @@ export default function App() {
                       src={url} 
                       alt={`Modelo de Marcador Cristão ${index + 26}`}
                       referrerPolicy="no-referrer"
-                      loading="eager"
+                      loading={index < 4 ? "eager" : "lazy"}
+                      decoding="async"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                     <div className="absolute bottom-1.5 right-1.5 px-1.5 py-0.5 rounded-md bg-[#0F3157]/95 text-[#E4C97A] text-[8px] font-mono tracking-wider font-semibold shadow">
@@ -628,7 +619,8 @@ export default function App() {
                       src={url} 
                       alt={`Modelo de Marcador Cristão ${index + 26}`}
                       referrerPolicy="no-referrer"
-                      loading="eager"
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                     <div className="absolute bottom-1.5 right-1.5 px-1.5 py-0.5 rounded-md bg-[#0F3157]/95 text-[#E4C97A] text-[8px] font-mono tracking-wider font-semibold shadow">
@@ -736,7 +728,8 @@ export default function App() {
                     src="https://i.ibb.co/bjswWkF7/Chat-GPT-Image-26-de-jun-de-2026-20-55-33.png" 
                     alt="Mockup do Pacote Completo"
                     referrerPolicy="no-referrer"
-                    loading="eager"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-auto object-contain max-h-[480px] transition-transform duration-700 hover:scale-[1.01]"
                   />
                 </div>
@@ -830,7 +823,8 @@ export default function App() {
                       src="https://i.ibb.co/cKc1VSFm/img01.png" 
                       alt="Mockup Bônus 01" 
                       referrerPolicy="no-referrer"
-                      loading="eager"
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-[1.03]"
                     />
                   </div>
@@ -878,7 +872,8 @@ export default function App() {
                       src="https://i.ibb.co/wFH6NYqV/img02.png" 
                       alt="Mockup Bônus 02" 
                       referrerPolicy="no-referrer"
-                      loading="eager"
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-[1.03]"
                     />
                   </div>
@@ -926,7 +921,8 @@ export default function App() {
                       src="https://i.ibb.co/1GnmMvkT/img03.png" 
                       alt="Mockup Bônus 03" 
                       referrerPolicy="no-referrer"
-                      loading="eager"
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-[1.03]"
                     />
                   </div>
@@ -1017,7 +1013,8 @@ export default function App() {
                     src="https://i.ibb.co/1f20PDCS/Chat-GPT-Image-26-de-jun-de-2026-14-43-43.png" 
                     alt="Mockup +150 Marcadores Cristãos Premium" 
                     referrerPolicy="no-referrer"
-                    loading="eager"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-auto max-h-[350px] object-contain rounded-xl transition-transform duration-500 hover:scale-[1.02]"
                   />
                 </div>
